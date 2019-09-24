@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.mapper.DeptMapper">
+
+    <resultMap id="deptMap" type="Dept">
+        <id column="dept_id" property="deptId"/>
+        <result column="dname" property="dname"/>
+        <result column="location" property="location"/>
+    </resultMap>
+
+
+    <select id="listdept" resultMap="deptMap">
+    select <include refid="allColumn"/> from t_dept
+  </select>
+
+    <insert id="addEmp">
+        insert into t_emp(name,age,sex,salary,dept_id) values (#{name},#{age},#{sex},#{salary},#{deptId})
+    </insert>
+
+    <sql id="allColumn">
+        dname,dept_id,location
+    </sql>
+</mapper>
